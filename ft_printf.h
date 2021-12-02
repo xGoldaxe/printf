@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:52:58 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/02 17:21:11 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:59:56 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 # include	<fcntl.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
+
+typedef struct s_options
+{
+	char	type;
+	int		minus;
+	int		zero;
+	int		point;
+	int		hashtag;
+	int		space;
+	int		plus;
+}	t_options;
 
 int	printf_percentage(const char src);
 int	printf_str(va_list argptr);

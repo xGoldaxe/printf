@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:51:50 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/02 18:58:11 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:55:30 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ int	ft_printf(const char *src, ...)
 {
 	unsigned int	i;
 	unsigned int	res;
-	int				tmp;
+	char			*content;
 	va_list			marker;
 	va_list			copy;
+	t_options		options;
 
 	va_start(marker, src);
 	va_copy(copy, marker);
@@ -52,7 +53,11 @@ int	ft_printf(const char *src, ...)
 		if (src[i] == '%')
 		{
 			i++;
-			tmp = printf_router(src[i], copy);
+			options = parse_printf_options(src[i]);
+			content = printf_router(options.type, copy, options);
+			prefix_router(options.type, content);
+			ft_putstr_fd(content, 1);
+			suffix_router(options.type, content, options);
 			if (tmp == -1)
 				return (-1);
 			res += tmp;
@@ -67,10 +72,10 @@ int	ft_printf(const char *src, ...)
 	return (res);
 }
 
-//int	main(void)
-//{
-//	char	*test = "ssalut";
+int	main(void)
+{
+	char	*test = "ssalut";
 
-//	printf("res: %d\n", printf("%d", 151));
-//	printf("res: %d\n", ft_printf("%d", 151));
-//}
+	printf("|% 4d|", 151);
+	//printf("res: %d\n", ft_printf("%d", 151));
+}
