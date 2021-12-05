@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_realloc_cat.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 15:16:40 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 17:37:40 by pleveque         ###   ########.fr       */
+/*   Created: 2021/12/03 11:26:05 by pleveque          #+#    #+#             */
+/*   Updated: 2021/12/03 19:23:02 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_realloc_cat(char *src, char *dst)
 {
-	size_t	i;
+	char			*tmp;
+	unsigned int	i;
 
+	tmp = malloc(sizeof(char) * (ft_strlen(src) + ft_strlen(dst) + 1));
+	if (!tmp)
+		return (NULL);
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
+	if (dst)
 	{
-		i++;
+		while (dst[i])
+		{
+			tmp[i] = dst[i];
+			i++;
+		}
+		free(dst);
+		dst = NULL;
 	}
-	return (i);
+	if (src)
+	{
+		while (*src)
+		{
+			tmp[i] = *src;
+			i++;
+			src++;
+		}
+	}
+	tmp[i] = '\0';
+	return (tmp);
 }

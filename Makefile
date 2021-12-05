@@ -2,9 +2,16 @@ SRCS	=  main.c printf_char.c printf_hexa.c printf_int.c printf_percentage.c prin
 printf_str.c printf_uns_int.c \
 ./libft2/ft_putstr_fd.c ./libft2/ft_putnbr_base_uns.c ./libft2/ft_putnbr_fd.c ./libft2/ft_putnbr_uns_fd.c ./libft2/ft_strlen.c  ./libft2/ft_putchar_fd.c\
 
+SRCSBONUS	=  main_bonus.c printf_char_bonus.c printf_int_bonus.c printf_percentage_bonus.c printf_pointer_bonus.c \
+printf_str_bonus.c prefix_router_bonus.c parse_options_bonus.c\
+
 HEADERS	= ft_printf.h ./libft.h
 
+BONUSHEADERS = ./bonus/ft_printf.h
+
 OBJS	= ${SRCS:.c=.o}
+
+BONUSOBJS	= ${SRCS:.c=.o}
 
 NAME	= libftprintf.a
 
@@ -33,7 +40,12 @@ ${NAME}:	${OBJS}
 
 all:		${NAME}
 				cd libft && make re
+				@make bonus
 				@printf "${GREEN}✔️✔️✔️[ALL] -  Printf has been created!✔️✔️✔️${NC}"
+
+bonus:	${BONUSOBJS}
+				@${LIBC} ${NAME} ${BONUSOBJS}
+				@printf "${GREEN}\n\t\t✔️✔️✔️[BONUS] - Bonus has been created!✔️✔️✔️${NC}"
 
 clean:
 				@${RM} ${OBJS} && printf "${RED}deleting binaries (${OBJS})...${NC}\n"

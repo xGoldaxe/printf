@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 15:16:40 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 17:37:40 by pleveque         ###   ########.fr       */
+/*   Created: 2021/11/23 14:21:01 by pleveque          #+#    #+#             */
+/*   Updated: 2021/11/26 17:06:50 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *str)
+static int	ft_islower(int c)
 {
-	size_t	i;
+	return (c >= 97 && c <= 122);
+}
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+static int	ft_isupper(int c)
+{
+	return (c >= 65 && c <= 90);
+}
+
+int	ft_isalpha(int c)
+{
+	return (ft_isupper(c) || ft_islower(c));
 }

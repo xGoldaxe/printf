@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:16:40 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 17:37:40 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:24:49 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
-	i = 0;
 	if (!str)
 		return (0);
+	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 15:16:40 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 17:37:40 by pleveque         ###   ########.fr       */
+/*   Created: 2021/12/05 14:02:43 by pleveque          #+#    #+#             */
+/*   Updated: 2021/12/05 14:02:51 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_printf_bonus.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strfill(int size, char c)
 {
-	size_t	i;
+	char	*filled;
+	int		i;
 
+	filled = malloc(sizeof(char) * size + 1);
+	if (!filled)
+		return (NULL);
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
+	while (i < size)
 	{
+		filled[i] = c;
 		i++;
 	}
-	return (i);
+	filled[i] = '\0';
+	return (filled);
 }

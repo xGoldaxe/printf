@@ -1,5 +1,24 @@
 {
 	"files.associations": {
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"cstdio": "c",
+		"complex": "c",
+		"__functional_base": "c",
+		"__functional_base_03": "c",
+		"__hash_table": "c",
+		"__tuple": "c",
+		"array": "c",
+		"chrono": "c",
+		"type_traits": "c",
+		"functional": "c",
+		"limits": "c",
+		"memory": "c",
+		"ratio": "c",
+		"tuple": "c",
+		"utility": "c",
+		"bitset": "c",
+		"__bit_reference": "c",
+		"algorithm": "c",
+		"ios": "c"
 	}
 }

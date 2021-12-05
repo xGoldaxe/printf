@@ -1,14 +1,15 @@
 SRCS	=  main_bonus.c printf_char_bonus.c printf_int_bonus.c printf_percentage_bonus.c printf_pointer_bonus.c \
-printf_str_bonus.c prefix_router_bonus.c parse_options_bonus.c\
-#./libft/ft_realloc_trunc.c \
-#./libft/ft_strlcpy.c \
-#./libft/ft_strlen.c \
-#./libft/ft_isdigit.c\
-#./libft/ft_atoi.c ./libft/ft_strdup.c\
-#./libft/ft_itoa.c \
-#./libft/ft_putstr_fd.c \
-#./libft/ft_realloc_cat.c ./libft/ft_realloc_char.c ./libft/ft_itoa_uns.c \
-#./libft/ft_itoa_base_uns.c ./libft/ft_arrinclude.c \
+printf_str_bonus.c prefix_router_bonus.c parse_options_bonus.c ft_realloc_l_cat.c ft_realloc_merge.c ft_strldup.c\
+ft_strfill.c \
+./libft/ft_realloc_trunc.c \
+./libft/ft_strlcpy.c \
+./libft/ft_strlen.c \
+./libft/ft_isdigit.c\
+./libft/ft_atoi.c ./libft/ft_strdup.c\
+./libft/ft_itoa.c \
+./libft/ft_putstr_fd.c \
+./libft/ft_realloc_cat.c ./libft/ft_realloc_char.c ./libft/ft_itoa_uns.c \
+./libft/ft_itoa_base_uns.c ./libft/ft_arrinclude.c \
 
 HEADERS	= ft_printf_bonus.h ./libft/libft.h
 

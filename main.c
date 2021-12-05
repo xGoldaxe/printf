@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:51:50 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/02 18:58:11 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/04 15:01:36 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ int	ft_printf(const char *src, ...)
 	return (res);
 }
 
-//int	main(void)
-//{
-//	char	*test = "ssalut";
-
-//	printf("res: %d\n", printf("%d", 151));
-//	printf("res: %d\n", ft_printf("%d", 151));
-//}
+int	main(void)
+{
+	printf("{%d}\n", ft_printf("%c%c%c ", '2', '1', 0));
+	printf("{%d}", printf("%c%c%c ", '2', '1', 0));
+}

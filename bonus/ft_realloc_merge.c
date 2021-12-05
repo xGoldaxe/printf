@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_pointer_bonus.c                             :+:      :+:    :+:   */
+/*   ft_realloc_merge.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 10:45:05 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 16:26:20 by pleveque         ###   ########.fr       */
+/*   Created: 2021/12/05 12:32:38 by pleveque          #+#    #+#             */
+/*   Updated: 2021/12/05 13:19:58 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*printf_pointer(unsigned long long arg)
+int	ft_realloc_merge(char **store, int nb_str, ...)
 {
-	char				*res;
-	char				*itoa;
+	char			*res;
+	va_list			marker;
+	int				i;
+	int				res_size;
 
+	va_start(marker, nb_str);
 	res = NULL;
-	//if (!arg)
-	//	return (ft_realloc_cat("(null)", NULL));
-	res = ft_realloc_cat("0x", NULL);
-	itoa = ft_itoa_base_uns(arg, "0123456789abcdef");
-	res = ft_realloc_cat(itoa, res);
-	free(itoa);
-	return (res);
+	res_size = 0;
+	i = 0;
+	while (i < nb_str)
+	{
+		res_size = ft_realloc_l_cat(va_arg(marker, char *),
+				va_arg(marker, int), &res, res_size);
+		if (res_size == -1)
+		{
+			free(res);
+			res = NULL;
+			return (-1);
+		}
+		i++;
+	}
+	if (*store)
+		free(*store);
+	*store = res;
+	return (res_size);
 }
