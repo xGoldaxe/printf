@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:51:50 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 16:23:49 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/05 19:02:00 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ char	*printf_router(t_options *options, void *arg, int *size)
 	else if (options->type == 'X')
 		res = printf_int(ft_itoa_base_uns(*(unsigned int *)arg,
 					"0123456789ABCDEF"), options->precision);
-	if (options->type == 'c')
-		*size += 1;
-	else
-		*size += ft_strlen(res);
+	*size += add_ternary(options->type == 'c', 1, ft_strlen(res));
 	return (res);
 }
 
@@ -68,51 +65,64 @@ void	*get_arg(va_list argptr, char type)
 	return (i);
 }
 
-int	ft_printf(const char *src, ...)
+char	*build_printf(t_options *options, va_list marker, int *tmp)
 {
-	int				i;
+	void	*arg;
+	char	*content;
+
+	arg = NULL;
+	if (options->type != '%')
+		arg = get_arg(marker, options->type);
+	content = printf_router(options, arg, tmp);
+	content = prefix_router(options, content, arg, tmp);
+	if (arg)
+		free(arg);
+	return (content);
+}
+
+int	ft_iteration_printf(const char *src, va_list marker, t_options *options)
+{	
 	int				res;
 	int				tmp;
 	char			*content;
-	va_list			copy;
-	t_options		*options;
-	t_options		opt;
-	void	*arg;
 
-	va_start(copy, src);
-	options = &opt;
-	i = 0;
 	res = 0;
-	while (src[i])
+	while (*src)
 	{
-		if (src[i] == '%')
+		if (*src == '%')
 		{
 			tmp = 0;
-			arg = NULL;
-			i += parse_printf_options(&src[i], options);
-			if (options->type != '%')
-				arg = get_arg(copy, options->type);
-			content = printf_router(options, arg, &tmp);
-			content = prefix_router(options, content, arg, &tmp);
+			src += parse_printf_options(src, options);
+			content = build_printf(options, marker, &tmp);
 			write(1, content, tmp);
 			free(content);
-			free(arg);
 			res += tmp;
 		}
 		else
 		{
 			res++;
-			write(1, &src[i], 1);
+			write(1, src, 1);
 		}
-		i++;
+		src++;
 	}
 	return (res);
+}
+
+int	ft_printf(const char *src, ...)
+{
+	va_list			marker;
+	t_options		*options;
+	t_options		opt;
+
+	va_start(marker, src);
+	options = &opt;
+	return (ft_iteration_printf(src, marker, options));
 }
 
 //int	main(void)
 //{
 //	int	*test;
 
-//	printf("\n{%d}\n", ft_printf("this is 1 %s with %s %s", "test", "multiple", "strings"));
-//	printf("\n{%d}\n", printf("this is 1 %s with %s %s", "test", "multiple", "strings"));
+//	printf("\n{%d}\n", ft_printf("%.3s", "salut"));
+//	printf("\n{%d}\n", printf("%.3s", "salut"));
 //}

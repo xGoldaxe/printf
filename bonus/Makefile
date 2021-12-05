@@ -1,7 +1,6 @@
 SRCS	=  main_bonus.c printf_char_bonus.c printf_int_bonus.c printf_percentage_bonus.c printf_pointer_bonus.c \
 printf_str_bonus.c prefix_router_bonus.c parse_options_bonus.c ft_realloc_l_cat.c ft_realloc_merge.c ft_strldup.c\
-ft_strfill.c \
-./libft/ft_realloc_trunc.c \
+ft_strfill.c add_ternary.c \
 ./libft/ft_strlcpy.c \
 ./libft/ft_strlen.c \
 ./libft/ft_isdigit.c\

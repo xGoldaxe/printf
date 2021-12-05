@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:52:58 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 13:12:31 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/05 18:51:03 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include	<unistd.h>
 # include	<fcntl.h>
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct s_options
 {
@@ -26,7 +26,6 @@ typedef struct s_options
 	int		precision;
 	int		minus;
 	int		zero;
-	int		point;
 	int		hashtag;
 	int		space;
 	int		size;
@@ -35,15 +34,17 @@ typedef struct s_options
 
 int		printf_percentage(const char src);
 int		ft_realloc_l_cat(char *src, int src_size, char **dst, int dst_size);
-char	*printf_int(int arg);
+char	*printf_int(char *content, int precision);
 char	*printf_char(int arg);
+char	*printf_str(char *arg, int precision);
 char	*printf_pointer(unsigned long long arg);
-char	*printf_str(char *arg);
 int		ft_printf(const char *src, ...);
 int		parse_printf_options(const char *src, t_options *options);
-char	*prefix_router(t_options *options, char *content, void *arg, int *c_size);
-char	*ft_realloc_trunc(char *src, int len);
+char	*prefix_router(t_options *options, char *content,
+			void *arg, int *c_size);
 int		ft_realloc_merge(char **store, int nb_str, ...);
-
+char	*ft_strldup(const char *s, int size);
+char	*ft_strfill(int size, char c);
+int		add_ternary(int condition, int v1, int v2);
 
 #endif

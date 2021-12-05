@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 15:53:14 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 12:10:05 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/05 18:44:13 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static char	*ft_build_itoa(char *res, unsigned int len, int n)
 		n = n / 10;
 		i++;
 	}
-	//if (negativ)
-	//	res[0] = '-';
 	res[len] = '\0';
 	return (res);
 }
@@ -59,8 +57,6 @@ char	*ft_itoa(int n)
 	unsigned int	len;
 
 	len = count_itoa(n);
-	//if (n < 0)
-	//	len++;
 	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
