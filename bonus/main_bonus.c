@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:51:50 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/06 14:28:21 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 15:11:58 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char	*build_printf(t_options *options, va_list marker, int *tmp)
 	if (options->type != '%')
 		arg = get_arg(marker, options->type);
 	content = printf_router(options, arg, tmp);
-	content = NULL;
 	content = prefix_router(options, content, arg, tmp);
 	if (arg)
 		free(arg);
@@ -119,10 +118,10 @@ int	ft_printf(const char *src, ...)
 	return (ft_iteration_printf(src, marker, options));
 }
 
-int	main(void)
-{
-	int	*test;
+//int	main(void)
+//{
+//	int	*test;
 
-	printf("\n{%d}\n", ft_printf("%.1s", NULL));
-	printf("\n{%d}\n", printf("%.1s", NULL));
-}
+//	printf("\n{%d}\n", ft_printf("%.1s", NULL));
+//	printf("\n{%d}\n", printf("%.1s", NULL));
+//}

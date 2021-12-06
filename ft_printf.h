@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:52:58 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/03 22:01:57 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 15:22:17 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include	<unistd.h>
 # include	<fcntl.h>
 # include <stdarg.h>
-# include "./libft2/libft.h"
+# include "./libft/libft.h"
 
 int	printf_percentage(const char src);
 int	printf_str(va_list argptr);

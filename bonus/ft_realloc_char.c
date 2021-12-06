@@ -6,11 +6,11 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:26:05 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 15:00:44 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:41:44 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_bonus.h"
 
 char	*ft_realloc_char(char c, char *dst)
 {

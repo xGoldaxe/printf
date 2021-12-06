@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:52:58 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/06 14:14:34 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:40:46 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,10 @@ char	*ft_strldup(const char *s, int size);
 char	*ft_strfill(int size, char c);
 int		add_ternary(int condition, int v1, int v2);
 void	*free_all(int nb_free, ...);
+char	*ft_realloc_cat(char *src, char *dst);
+char	*ft_realloc_char(char c, char *dst);
+char	*ft_itoa_uns(unsigned long long n);
+char	*ft_itoa_base_uns(unsigned long long n, char *base);
+int		ft_arrinclude(char c, char *charset);
 
 #endif

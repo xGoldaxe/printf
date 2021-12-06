@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrinclude.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_uns_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 17:12:32 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/03 17:31:28 by pleveque         ###   ########.fr       */
+/*   Created: 2021/12/06 15:33:46 by pleveque          #+#    #+#             */
+/*   Updated: 2021/12/06 15:33:50 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_arrinclude(char c, char *charset)
+static void	ft_putnbr_fd_recu(unsigned int n, int fd, int	*i_ptr)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (charset[i])
+	if (n != 0)
 	{
-		if (c == charset[i])
-			return (1);
-		i++;
+		*i_ptr += 1;
+		ft_putnbr_fd_recu(n / 10, fd, i_ptr);
+		ft_putchar_fd('0' + n % 10, fd);
 	}
-	return (0);
+}
+
+int	ft_putnbr_uns_fd(unsigned int n, int fd)
+{
+	int	iteration;
+	int	*i_ptr;
+
+	i_ptr = &iteration;
+	iteration = 0;
+	if (n == 0)
+	{
+		ft_putchar_fd('0', fd);
+		return (1);
+	}
+	ft_putnbr_fd_recu(n, fd, i_ptr);
+	return (iteration);
 }

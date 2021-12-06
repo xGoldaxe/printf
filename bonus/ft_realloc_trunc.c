@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc_cat.c                                   :+:      :+:    :+:   */
+/*   ft_realloc_trunc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:26:05 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 18:46:54 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:41:51 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_bonus.h"
 
-char	*ft_realloc_cat(char *src, char *dst)
+char	*ft_realloc_trunc(char *src, int len)
 {
 	char			*tmp;
-	unsigned int	i;
+	int				i;
 
-	tmp = malloc(sizeof(char) * (ft_strlen(src) + ft_strlen(dst) + 1));
+	tmp = malloc(sizeof(char) * len);
 	if (!tmp)
 		return (NULL);
 	i = 0;
-	if (dst)
+	if (src)
 	{
-		while (dst[i])
+		while (src[i] && i < len)
 		{
-			tmp[i] = dst[i];
+			tmp[i] = src[i];
 			i++;
 		}
-		free(dst);
-		dst = NULL;
-	}
-	while (*src)
-	{
-		tmp[i] = *src;
-		i++;
-		src++;
+		free(src);
 	}
 	tmp[i] = '\0';
 	return (tmp);

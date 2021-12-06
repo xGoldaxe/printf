@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:21:03 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 15:00:49 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:40:54 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-void	ft_putnbr_base(int nbr, char *base);
-char	*ft_realloc_cat(char *src, char *dst);
-char	*ft_realloc_char(char c, char *dst);
-char	*ft_itoa_uns(unsigned long long n);
-char	*ft_itoa_base_uns(unsigned long long n, char *base);
-int		ft_arrinclude(char c, char *charset);
 
 #endif

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_arrinclude.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 12:39:03 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/02 18:42:49 by pleveque         ###   ########.fr       */
+/*   Created: 2021/12/03 17:12:32 by pleveque          #+#    #+#             */
+/*   Updated: 2021/12/06 14:41:30 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "ft_printf_bonus.h"
 
-void	ft_putnbr_base(int nbr, char *base)
-{	
-	int	modulo;
-	int	division;
-	int	base_size;
+int	ft_arrinclude(char c, char *charset)
+{
+	unsigned int	i;
 
-	base_size = ft_strlen(base);
-	division = nbr / base_size;
-	modulo = nbr % base_size;
-	if (division != 0)
-		ft_putnbr_base(division, base);
-	write(1, &base[modulo], 1);
+	i = 0;
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }
