@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:51:50 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/04 15:01:36 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/05 16:41:22 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ int	ft_printf(const char *src, ...)
 	unsigned int	res;
 	int				tmp;
 	va_list			marker;
-	va_list			copy;
 
 	va_start(marker, src);
-	va_copy(copy, marker);
 	i = 0;
 	res = 0;
 	while (src[i])
@@ -52,9 +50,7 @@ int	ft_printf(const char *src, ...)
 		if (src[i] == '%')
 		{
 			i++;
-			tmp = printf_router(src[i], copy);
-			if (tmp == -1)
-				return (-1);
+			tmp = printf_router(src[i], marker);
 			res += tmp;
 		}
 		else
@@ -65,10 +61,4 @@ int	ft_printf(const char *src, ...)
 		i++;
 	}
 	return (res);
-}
-
-int	main(void)
-{
-	printf("{%d}\n", ft_printf("%c%c%c ", '2', '1', 0));
-	printf("{%d}", printf("%c%c%c ", '2', '1', 0));
 }

@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:52:58 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 18:50:48 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:14:34 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_options
 {
 	char	type;
-	int		precision;
+	int		prec;
 	int		minus;
 	int		zero;
 	int		hashtag;
@@ -34,7 +34,7 @@ typedef struct s_options
 
 int		printf_percentage(const char src);
 int		ft_realloc_l_cat(char *src, int src_size, char **dst, int dst_size);
-char	*printf_int(char *content, int precision);
+char	*printf_int(char *content, int precision, int is_zero);
 char	*printf_char(int arg);
 char	*printf_str(char *arg, int precision);
 char	*printf_pointer(unsigned long long arg);
@@ -46,5 +46,6 @@ int		ft_realloc_merge(char **store, int nb_str, ...);
 char	*ft_strldup(const char *s, int size);
 char	*ft_strfill(int size, char c);
 int		add_ternary(int condition, int v1, int v2);
+void	*free_all(int nb_free, ...);
 
 #endif

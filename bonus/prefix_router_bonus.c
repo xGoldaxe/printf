@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:04:10 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 19:00:40 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:29:00 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*get_fill(t_options *options, int size)
 {
 	char	*fill;
 
-	if (options->zero && !options->minus && options->precision == -1)
+	fill = NULL;
+	if (options->zero && !options->minus && options->prec == -1)
 		fill = ft_strfill(size, '0');
 	else
 		fill = ft_strfill(size, ' ');
@@ -55,21 +56,22 @@ void *arg, int *c_size)
 	char			*preprefix;
 	char			*res;
 
+	if (!content)
+		return (NULL);
 	res = NULL;
 	fill = NULL;
+	free(res);
 	preprefix = ft_preprefix(options, arg);
 	fill = get_fill(options, options->size - *c_size - ft_strlen(preprefix));
 	if (options->minus)
 		*c_size = ft_realloc_merge(&res, 3, preprefix, ft_strlen(preprefix),
 				content, *c_size, fill, ft_strlen(fill));
-	else if (options->zero && options->precision == -1)
+	else if (options->zero && options->prec == -1)
 		*c_size = ft_realloc_merge(&res, 3, preprefix, ft_strlen(preprefix),
 				fill, ft_strlen(fill), content, *c_size);
 	else
 		*c_size = ft_realloc_merge(&res, 3, fill, ft_strlen(fill),
 				preprefix, ft_strlen(preprefix), content, *c_size);
-	free(content);
-	free(fill);
-	free(preprefix);
+	free_all(3, content, fill, preprefix);
 	return (res);
 }

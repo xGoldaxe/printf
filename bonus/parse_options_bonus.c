@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 17:10:51 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 19:05:45 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:13:39 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	clear_options(t_options *options)
 	options->hashtag = 0;
 	options->space = 0;
 	options->plus = 0;
-	options->precision = -1;
+	options->prec = -1;
 	options->type = '\0';
 	options->size = -1;
 }
@@ -68,9 +68,9 @@ int	parse_printf_options(const char *src, t_options *options)
 		if (src[i] == '.')
 		{
 			i++;
-			options->precision = 0;
+			options->prec = 0;
 			if (ft_isdigit(src[i]))
-				options->precision = ft_atoi(&src[i]);
+				options->prec = ft_atoi(&src[i]);
 			i += ft_count_digits(&src[i]);
 		}
 	}

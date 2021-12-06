@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 14:11:57 by pleveque          #+#    #+#             */
-/*   Updated: 2021/11/26 15:52:21 by pleveque         ###   ########.fr       */
+/*   Created: 2021/12/06 12:28:36 by pleveque          #+#    #+#             */
+/*   Updated: 2021/12/06 14:24:48 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_printf_bonus.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*free_all(int nb_free, ...)
 {
-	size_t			i;
-	unsigned char	*s;
-	unsigned char	*d;
+	char			*to_free;
+	va_list			marker;
+	int				i;
 
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	if (dst == NULL && src == NULL)
-		return (dst);
-	if (s < d)
-	{
-		while (len > 0)
-		{
-			d[len - 1] = s[len - 1];
-			len--;
-		}
-		return (dst);
-	}
+	va_start(marker, nb_free);
 	i = 0;
-	while (i < len)
+	while (i < nb_free)
 	{
-		d[i] = s[i];
+		to_free = va_arg(marker, void *);
+		free(to_free);
 		i++;
 	}
-	return (dst);
+	return (NULL);
 }

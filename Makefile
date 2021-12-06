@@ -35,17 +35,15 @@ CYAN=\033[1;36m
 				@${CC} ${CFLAGS} -I. -o $@ -c $? && printf "${LIGHTCYAN}Creating $@${NC}\n"
 
 ${NAME}:	${OBJS}
-				@${LIBC} ${NAME} ${OBJS} ./libft/libft.a && printf "${CYAN}\t\t\t==>[Compiling binaries...]<=="
+				@${LIBC} ${NAME} ${OBJS} ./libft2/libft.a && printf "${CYAN}\t\t\t==>[Compiling binaries...]<=="
 				@printf "${GREEN}\n\t\t✔️✔️✔️ ${NAME} compiled succcessfully ✔️✔️✔️${NC}\n"
 
 all:		${NAME}
-				cd libft && make re
-				@make bonus
 				@printf "${GREEN}✔️✔️✔️[ALL] -  Printf has been created!✔️✔️✔️${NC}"
 
-bonus:	${BONUSOBJS}
-				@${LIBC} ${NAME} ${BONUSOBJS}
-				@printf "${GREEN}\n\t\t✔️✔️✔️[BONUS] - Bonus has been created!✔️✔️✔️${NC}"
+#bonus:	${BONUSOBJS}
+#				@${LIBC} ${NAME} ${BONUSOBJS}
+#				@printf "${GREEN}\n\t\t✔️✔️✔️[BONUS] - Bonus has been created!✔️✔️✔️${NC}"
 
 clean:
 				@${RM} ${OBJS} && printf "${RED}deleting binaries (${OBJS})...${NC}\n"

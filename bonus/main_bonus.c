@@ -6,37 +6,37 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:51:50 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/05 19:02:00 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/06 14:28:21 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*printf_router(t_options *options, void *arg, int *size)
+char	*printf_router(t_options *o, void *arg, int *size)
 {
 	char	*res;
 
 	res = NULL;
-	if (options->type == '%')
+	if (o->type == '%')
 		res = ft_strdup("%");
-	if (options->type == 'c')
+	if (o->type == 'c')
 		res = printf_char(*(int *)arg);
-	else if (options->type == 's')
-		res = printf_str((char *)arg, options->precision);
-	else if (options->type == 'p')
+	else if (o->type == 's')
+		res = printf_str((char *)arg, o->prec);
+	else if (o->type == 'p')
 		res = printf_pointer(*(unsigned long long *)arg);
-	else if (options->type == 'd' || options->type == 'i')
-		res = printf_int(ft_itoa(*(int *)arg), options->precision);
-	else if (options->type == 'u')
+	else if (o->type == 'd' || o->type == 'i')
+		res = printf_int(ft_itoa(*(int *)arg), o->prec, *(int *)arg == 0);
+	else if (o->type == 'u')
 		res = printf_int(ft_itoa_base_uns(*(unsigned int *)arg,
-					"0123456789"), options->precision);
-	else if (options->type == 'x')
+					"0123456789"), o->prec, *(unsigned int *)arg == 0);
+	else if (o->type == 'x')
 		res = printf_int(ft_itoa_base_uns(*(unsigned int *)arg,
-					"0123456789abcdef"), options->precision);
-	else if (options->type == 'X')
+					"0123456789abcdef"), o->prec, *(unsigned int *)arg == 0);
+	else if (o->type == 'X')
 		res = printf_int(ft_itoa_base_uns(*(unsigned int *)arg,
-					"0123456789ABCDEF"), options->precision);
-	*size += add_ternary(options->type == 'c', 1, ft_strlen(res));
+					"0123456789ABCDEF"), o->prec, *(unsigned int *)arg == 0);
+	*size += add_ternary(o->type == 'c', 1, ft_strlen(res));
 	return (res);
 }
 
@@ -74,6 +74,7 @@ char	*build_printf(t_options *options, va_list marker, int *tmp)
 	if (options->type != '%')
 		arg = get_arg(marker, options->type);
 	content = printf_router(options, arg, tmp);
+	content = NULL;
 	content = prefix_router(options, content, arg, tmp);
 	if (arg)
 		free(arg);
@@ -94,15 +95,14 @@ int	ft_iteration_printf(const char *src, va_list marker, t_options *options)
 			tmp = 0;
 			src += parse_printf_options(src, options);
 			content = build_printf(options, marker, &tmp);
+			if (!content)
+				return (res);
 			write(1, content, tmp);
 			free(content);
 			res += tmp;
 		}
-		else
-		{
-			res++;
+		else if (++res)
 			write(1, src, 1);
-		}
 		src++;
 	}
 	return (res);
@@ -119,10 +119,10 @@ int	ft_printf(const char *src, ...)
 	return (ft_iteration_printf(src, marker, options));
 }
 
-//int	main(void)
-//{
-//	int	*test;
+int	main(void)
+{
+	int	*test;
 
-//	printf("\n{%d}\n", ft_printf("%.3s", "salut"));
-//	printf("\n{%d}\n", printf("%.3s", "salut"));
-//}
+	printf("\n{%d}\n", ft_printf("%.1s", NULL));
+	printf("\n{%d}\n", printf("%.1s", NULL));
+}
