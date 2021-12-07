@@ -1,32 +1,24 @@
-SRCS	=  main.c printf_char.c printf_hexa.c printf_int.c printf_percentage.c printf_pointer.c \
-printf_str.c printf_uns_int.c \
-./libft/ft_putstr_fd.c ./libft/ft_putnbr_base_uns.c ./libft/ft_putnbr_fd.c ./libft/ft_strlen.c  ./libft/ft_putchar_fd.c\
-./libft/ft_putnbr_uns_fd.c
+SRCS	=  ./srcs/main_bonus.c ./srcs/printf_char_bonus.c ./srcs/printf_int_bonus.c ./srcs/printf_percentage_bonus.c ./srcs/printf_pointer_bonus.c \
+./srcs/printf_str_bonus.c ./srcs/prefix_router_bonus.c ./srcs/parse_options_bonus.c ./srcs/ft_realloc_l_cat.c ./srcs/ft_realloc_merge.c ./srcs/ft_strldup.c\
+./srcs/ft_strfill.c ./srcs/add_ternary.c ./srcs/free_all.c \
+./srcs/libft/ft_strlcpy.c \
+./srcs/libft/ft_strlen.c \
+./srcs/libft/ft_isdigit.c\
+./srcs/libft/ft_atoi.c \
+./srcs/libft/ft_strdup.c\
+./srcs/libft/ft_itoa.c \
+./srcs/libft/ft_putstr_fd.c \
+./srcs/ft_realloc_cat.c \
+./srcs/ft_realloc_char.c \
+./srcs/ft_itoa_uns.c \
+./srcs/ft_itoa_base_uns.c \
+./srcs/ft_arrinclude.c \
 
-
-SRCSBONUS	=  ./bonus/main_bonus.c ./bonus/printf_char_bonus.c ./bonus/printf_int_bonus.c ./bonus/printf_percentage_bonus.c ./bonus/printf_pointer_bonus.c \
-./bonus/printf_str_bonus.c ./bonus/prefix_router_bonus.c ./bonus/parse_options_bonus.c ./bonus/ft_realloc_l_cat.c ./bonus/ft_realloc_merge.c ./bonus/ft_strldup.c\
-./bonus/ft_strfill.c ./bonus/add_ternary.c ./bonus/free_all.c \
-./bonus/libft/ft_strlcpy.c \
-./bonus/libft/ft_strlen.c \
-./bonus/libft/ft_isdigit.c\
-./bonus/libft/ft_atoi.c \
-./bonus/libft/ft_strdup.c\
-./bonus/libft/ft_itoa.c \
-./bonus/libft/ft_putstr_fd.c \
-./bonus/ft_realloc_cat.c \
-./bonus/ft_realloc_char.c \
-./bonus/ft_itoa_uns.c \
-./bonus/ft_itoa_base_uns.c \
-./bonus/ft_arrinclude.c \
-
-HEADERS	= ft_printf.h ./libft/libft.h
-
-BONUSHEADERS = ./bonus/ft_printf_bonus.h ./bonus/libft/libft.h
+HEADERS = ./srcs/ft_printf_bonus.h ./srcs/libft/libft.h
 
 OBJS	= ${SRCS:.c=.o}
 
-BONUSOBJS	= ${SRCSBONUS:.c=.o}
+LIBFT = cd srcs/libft && make all
 
 NAME	= libftprintf.a
 
@@ -49,31 +41,21 @@ CYAN=\033[1;36m
 %.o:		%.c	
 				@${CC} ${CFLAGS} -I. -o $@ -c $? && printf "${LIGHTCYAN}Creating $@${NC}\n"
 
-${NAME}:	${OBJS}
-				cd bonus/libft && make re
-				@${LIBC} ${NAME} ${OBJS} ./libft/libft.a && printf "${CYAN}\t\t\t==>[Compiling binaries...]<=="
-				@printf "${GREEN}\n\t\t✔️✔️✔️ ${NAME} compiled succcessfully ✔️✔️✔️${NC}\n"
+${NAME}:	bonus
 
-all:		bonus
-				@printf "${GREEN}✔️✔️✔️[ALL] -  Printf has been created!✔️✔️✔️${NC}"
+all:		${NAME}
 
-bonus:	${BONUSOBJS}
-				rm -f ${NAME}
-				cd bonus/libft && make re
-				@${LIBC} ${NAME} ${BONUSOBJS} ./bonus/libft/libft.a
-				@printf "${GREEN}\n\t\t✔️✔️✔️[BONUS] - Bonus has been created!✔️✔️✔️${NC}"
+bonus:	${OBJS}
+				${LIBFT}
+				${LIBC} ${NAME} ${OBJS} ./srcs/libft/libft.a
 
 clean:
-				@${RM} ${OBJS} && printf "${RED}deleting binaries (${OBJS})...${NC}\n"
-				@printf "${GREEN}✔️✔️✔️[clean] - binaries as been deleted!✔️✔️✔️\n${NC}"
+				${RM} ${OBJS}
 
 fclean:		clean
-					rm -f ./bonus/*.o
-					cd bonus/libft && make fclean
-					cd libft && make fclean
-					@${RM} ${NAME} && printf "${RED}deleting ${NAME}...\n${NC}"
-					@printf "${GREEN}✔️✔️✔️[fclean] - folder is now clean!✔️✔️✔️${NC}"
+					rm -f ./srcs/*.o
+					cd srcs/libft && make fclean
 
 re:				fclean all
 
-PHONY:		all clean fclean re
+PHONY:		all clean fclean re bonus

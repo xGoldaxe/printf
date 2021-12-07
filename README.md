@@ -1,0 +1,3 @@
+# THIS IS MY PRINTF FOR 42
+Try to do it yourself before looking for answer in
+some dark github repo...
