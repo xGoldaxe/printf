@@ -1,24 +1,24 @@
-SRCS	=  ./srcs/main_bonus.c ./srcs/printf_char_bonus.c ./srcs/printf_int_bonus.c ./srcs/printf_percentage_bonus.c ./srcs/printf_pointer_bonus.c \
-./srcs/printf_str_bonus.c ./srcs/prefix_router_bonus.c ./srcs/parse_options_bonus.c ./srcs/ft_realloc_l_cat.c ./srcs/ft_realloc_merge.c ./srcs/ft_strldup.c\
-./srcs/ft_strfill.c ./srcs/add_ternary.c ./srcs/free_all.c \
-./srcs/libft/ft_strlcpy.c \
-./srcs/libft/ft_strlen.c \
-./srcs/libft/ft_isdigit.c\
-./srcs/libft/ft_atoi.c \
-./srcs/libft/ft_strdup.c\
-./srcs/libft/ft_itoa.c \
-./srcs/libft/ft_putstr_fd.c \
-./srcs/ft_realloc_cat.c \
-./srcs/ft_realloc_char.c \
-./srcs/ft_itoa_uns.c \
-./srcs/ft_itoa_base_uns.c \
-./srcs/ft_arrinclude.c \
+SRCS	=  ./bonus/main_bonus.c ./bonus/printf_char_bonus.c ./bonus/printf_int_bonus.c ./bonus/printf_percentage_bonus.c ./bonus/printf_pointer_bonus.c \
+./bonus/printf_str_bonus.c ./bonus/prefix_router_bonus.c ./bonus/parse_options_bonus.c ./bonus/ft_realloc_l_cat.c ./bonus/ft_realloc_merge.c ./bonus/ft_strldup.c\
+./bonus/ft_strfill.c ./bonus/add_ternary.c ./bonus/free_all.c \
+./bonus/libft/ft_strlcpy.c \
+./bonus/libft/ft_strlen.c \
+./bonus/libft/ft_isdigit.c\
+./bonus/libft/ft_atoi.c \
+./bonus/libft/ft_strdup.c\
+./bonus/libft/ft_itoa.c \
+./bonus/libft/ft_putstr_fd.c \
+./bonus/ft_realloc_cat.c \
+./bonus/ft_realloc_char.c \
+./bonus/ft_itoa_uns.c \
+./bonus/ft_itoa_base_uns.c \
+./bonus/ft_arrinclude.c \
 
-HEADERS = ./srcs/ft_printf_bonus.h ./srcs/libft/libft.h
+HEADERS = ./bonus/ft_printf_bonus.h ./bonus/libft/libft.h
 
 OBJS	= ${SRCS:.c=.o}
 
-LIBFT = cd srcs/libft && make all
+LIBFT = cd bonus/libft && make all
 
 NAME	= libftprintf.a
 
@@ -47,14 +47,14 @@ all:		${NAME}
 
 bonus:	${OBJS}
 				${LIBFT}
-				${LIBC} ${NAME} ${OBJS} ./srcs/libft/libft.a
+				${LIBC} ${NAME} ${OBJS} ./bonus/libft/libft.a
 
 clean:
 				${RM} ${OBJS}
 
 fclean:		clean
-					rm -f ./srcs/*.o
-					cd srcs/libft && make fclean
+					rm -f ./bonus/*.o
+					cd bonus/libft && make fclean
 
 re:				fclean all
 
