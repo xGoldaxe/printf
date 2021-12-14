@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:04:10 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/06 14:29:00 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:10:56 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*get_fill(t_options *options, int size)
 	char	*fill;
 
 	fill = NULL;
+	if (size < 0)
+		return (NULL);
 	if (options->zero && !options->minus && options->prec == -1)
 		fill = ft_strfill(size, '0');
 	else
