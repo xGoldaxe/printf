@@ -6,7 +6,7 @@
 /*   By: pleveque <pleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:52:58 by pleveque          #+#    #+#             */
-/*   Updated: 2021/12/07 11:47:02 by pleveque         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:52:23 by pleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include	<unistd.h>
 # include	<fcntl.h>
 # include <stdarg.h>
-# include "srcs/libft/libft.h"
+# include "bonus/libft/libft.h"
 
 typedef struct s_options
 {
