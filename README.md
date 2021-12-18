@@ -1,3 +1,3 @@
-# THIS IS MY PRINTF FOR 42
+# THIS IS MY PRINTF FOR 42 graded 125/100
 Try to do it yourself before looking for answer in
 some dark github repo...
